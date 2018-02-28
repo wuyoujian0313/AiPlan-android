@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AiPlan-android.iml" filepath="$PROJECT_DIR$/AiPlan-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aiplan/aiplan.iml" filepath="$PROJECT_DIR$/aiplan/aiplan.iml" />
+    </modules>
+  </component>
+</project>
