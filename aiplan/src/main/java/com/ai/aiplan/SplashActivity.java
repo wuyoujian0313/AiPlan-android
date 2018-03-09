@@ -32,6 +32,7 @@ public class SplashActivity extends AIBaseActivity {
         final  int color = typedValue.data;
         Log.d("backgroudColor",WebViewKitActivity.backgroundColorKey);
         intent.putExtra(WebViewKitActivity.backgroundColorKey,color);
+
         //intent.putExtra(WebViewKitActivity.webViewURLKey,"http://www.baidu.com");
         startActivity(intent);
         finish();
