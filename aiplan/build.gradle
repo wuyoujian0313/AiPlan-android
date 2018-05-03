@@ -32,6 +32,24 @@ android {
             debuggable false
         }
     }
+
+    productFlavors {
+        AIPlan {
+            applicationId "com.ai.aiplan"
+            resValue "string", "app_name", "信.点兵"
+        }
+
+        AIPlanTest {
+            applicationId "com.ai.aiplanT"
+            resValue "string", "app_name", "信.点兵.T"
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -40,7 +58,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.google.code.gson:gson:2.3.1'
     testCompile 'junit:junit:4.12'
+
 }
 
 // 打包命令
