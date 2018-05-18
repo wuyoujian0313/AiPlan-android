@@ -21,7 +21,7 @@ import com.ai.base.okHttp.OkHttpBaseAPI;
 import com.ai.base.util.FileUtilCommon;
 import com.ai.base.util.LogUtil;
 import com.ai.base.util.PermissionUitls;
-import com.ai.webplugin.WebViewKitActivity;
+import com.ai.webplugin.AIWebViewActivity;
 import com.ai.webplugin.config.GlobalCfg;
 import com.google.gson.Gson;
 
@@ -88,12 +88,29 @@ public class SplashActivity extends AIBaseActivity {
                 String data = okHttpBaseAPI.httpGetTask(url, "getVersion");
                 try{
                     Gson gson = new Gson();
+                    if (data == null || data.length() <=0) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        PermissionUitls.mContext = SplashActivity.this;
+                                        final String checkPermissinos [] = {Manifest.permission.INTERNET,
+                                                Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                                        checkPermissionByCode(PermissionUitls.PERMISSION_STORAGE_CODE,checkPermissinos);
+                                        enterHomeActivity();
+                                    }
+                                }, 2000);
+                            }
+                        });
+                    }
                     VersionBean versionInfo = gson.fromJson(data, VersionBean.class);
                     String platform = versionInfo.getPlatform();
                     final String versionURL = versionInfo.getVersionURL();
-                    if (platform.equalsIgnoreCase("android")) {
+                    if (platform.startsWith("android")) {
                         String versionNumber = versionInfo.getVersionNumber();
-                        if (!versionNumber.equalsIgnoreCase(locationVersion)) {
+                        if (versionNumber.compareToIgnoreCase(locationVersion)>0 ) {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -120,6 +137,21 @@ public class SplashActivity extends AIBaseActivity {
                         }
                     }
                 }catch (Exception e){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    PermissionUitls.mContext = SplashActivity.this;
+                                    final String checkPermissinos [] = {Manifest.permission.INTERNET,
+                                            Manifest.permission.WRITE_EXTERNAL_STORAGE};
+                                    checkPermissionByCode(PermissionUitls.PERMISSION_STORAGE_CODE,checkPermissinos);
+                                    enterHomeActivity();
+                                }
+                            }, 2000);
+                        }
+                    });
                 }
             }
         }).start();
@@ -200,23 +232,22 @@ public class SplashActivity extends AIBaseActivity {
     }
 
     private void enterHomeActivity() {
-        Intent intent = new Intent(this, WebViewKitActivity.class);
+        Intent intent = new Intent(this, AIWebViewActivity.class);
 
         TypedValue typedValue = new TypedValue();
         getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
         final  int color = typedValue.data;
-        Log.d("backgroudColor",WebViewKitActivity.backgroundColorKey);
-        intent.putExtra(WebViewKitActivity.backgroundColorKey,color);
+        Log.d("backgroudColor",AIWebViewActivity.backgroundColorKey);
+        intent.putExtra(AIWebViewActivity.backgroundColorKey,color);
+        intent.putExtra(AIWebViewActivity.backgroundIdKey,R.color.colorPrimary);
 
         try {
             GlobalCfg globalCfg = GlobalCfg.getInstance();
-            String ua = globalCfg.attr("userAgent");
-            intent.putExtra(WebViewKitActivity.webViewUserAgentKey,ua);
             String flavor = BuildConfig.FLAVOR;
             if (flavor.equalsIgnoreCase("AIPlan")) {
-                intent.putExtra(WebViewKitActivity.webViewURLKey,globalCfg.attr("online.addr"));
+                intent.putExtra(AIWebViewActivity.webViewURLKey,globalCfg.attr("online.addr"));
             } else {
-                intent.putExtra(WebViewKitActivity.webViewURLKey,globalCfg.attr("online.addrTest"));
+                intent.putExtra(AIWebViewActivity.webViewURLKey,globalCfg.attr("online.addrTest"));
             }
 
             startActivity(intent);
