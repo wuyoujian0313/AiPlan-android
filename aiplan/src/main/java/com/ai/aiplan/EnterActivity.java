@@ -11,13 +11,12 @@ import com.ai.webplugin.config.GlobalCfg;
 
 import java.io.InputStream;
 
-public class SplashActivity extends AIBaseActivity {
+public class EnterActivity extends AIBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //
+        //setContentView(R.layout.splash_layout);
         initParam();
-        setContentView(R.layout.splash_layout);
         enterHomeActivity();
     }
 
@@ -37,7 +36,6 @@ public class SplashActivity extends AIBaseActivity {
         TypedValue typedValue = new TypedValue();
         getTheme().resolveAttribute(R.attr.colorPrimary, typedValue, true);
         final  int color = typedValue.data;
-        Log.d("backgroudColor",AIWebViewActivity.backgroundColorKey);
         intent.putExtra(AIWebViewActivity.backgroundColorKey,color);
         intent.putExtra(AIWebViewActivity.backgroundResIdKey,R.color.colorPrimary);
         intent.putExtra(AIWebViewActivity.welcomeImageResId,R.mipmap.startpage);

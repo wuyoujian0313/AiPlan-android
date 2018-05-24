@@ -24,7 +24,7 @@
                 android:resource="@xml/file_paths"/>
         </provider>
         <activity
-            android:name=".SplashActivity"
+            android:name=".EnterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppLauncher">
             <intent-filter>
