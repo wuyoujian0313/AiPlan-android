@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:background="#FF282333">
 
-    <ImageView
-        android:id="@+id/iv_splash"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:contentDescription="@null"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/startpage" />
+    <!--<ImageView-->
+        <!--android:id="@+id/iv_splash"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:adjustViewBounds="true"-->
+        <!--android:contentDescription="@null"-->
+        <!--android:scaleType="centerCrop"-->
+        <!--android:src="@mipmap/startpage" />-->
 
 </LinearLayout>
