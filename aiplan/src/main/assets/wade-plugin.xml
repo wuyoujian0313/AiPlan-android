@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugins>
-    <action name="JN_Test" class="com.ai.webplugin.AIWebViewBasePlugin" methodName="JN_Test"></action>
-    <action name="JN_Quit" class="com.ai.webplugin.AIWebViewBasePlugin" methodName="JN_Quit"></action>
-    <action name="JN_Sharing" class="com.ai.webplugin.AIWebViewBasePlugin" methodName="JN_Sharing"></action>
+    <action name="JN_Test" class="com.ai.webplugin.AIWebViewBasePlugin" ></action>
+    <action name="JN_Quit" class="com.ai.webplugin.AIWebViewBasePlugin" ></action>
+    <action name="JN_Sharing" class="com.ai.webplugin.AIWebViewBasePlugin" ></action>
+    <action name="JN_OpenDocument" class="com.ai.webplugin.AIWebViewBasePlugin" ></action>
 </plugins>
