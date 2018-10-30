@@ -12,23 +12,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-    signingConfigs {
-        config {
-            keyAlias 'aiplan-cer'
-            keyPassword '123456'
-            storeFile file('src/main/assets/aiplan-cer.jks')
-            storePassword '123456'
-
-            v1SigningEnabled true
-            v2SigningEnabled true
-        }
-    }
-
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
             debuggable false
         }
     }
@@ -62,5 +49,7 @@ dependencies {
 
 }
 
-// 打包命令
-// gradlew assembleRelease
+// 引入打包脚本
+apply from: '../buildScript/copy.gradle'
+
+// 打包请在控制台中执行：./buildScript/build.sh
